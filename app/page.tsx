@@ -78,16 +78,15 @@ export default function Home() {
       <section className="relative min-h-screen flex items-center justify-center">
         {/* Animated Background */}
         <div className="absolute inset-0 overflow-hidden">
-          {/* Floating Binary Numbers */}
-          {[...Array(80)].map((_, i) => {
-            const binaryStrings = ['0', '1', '00', '11', '01', '10', '000', '111', '101', '010', '0101', '1010', '1100', '0011']
-            return (
+          <div suppressHydrationWarning>
+            {/* Floating Binary Numbers */}
+            {[...Array(20)].map((_, i) => (
               <motion.div
                 key={`binary-${i}`}
                 className="absolute text-white text-lg font-mono select-none"
                 initial={{ 
-                  x: 1200,
-                  y: 1000,
+                  x: 100 + (i * 60),
+                  y: 800,
                   opacity: 0
                 }}
                 animate={{
@@ -95,45 +94,16 @@ export default function Home() {
                   opacity: [0, 0.15, 0.3, 0.15, 0]
                 }}
                 transition={{
-                  duration: Math.random() * 8 + 12,
+                  duration: 15,
                   repeat: Infinity,
-                  delay: Math.random() * 5,
+                  delay: i * 0.5,
                   ease: "linear"
                 }}
               >
-                {binaryStrings[Math.floor(Math.random() * binaryStrings.length)]}
+                {['0', '1', '00', '11', '01', '10'][i % 6]}
               </motion.div>
-            )
-          })}
-          
-          {/* Additional Floating Binary */}
-          {[...Array(60)].map((_, i) => {
-            const singleBinary = Math.random() > 0.5 ? '1' : '0'
-            return (
-              <motion.div
-                key={`single-${i}`}
-                className="absolute text-white text-sm font-mono select-none"
-                initial={{ 
-                  x: 1200,
-                  y: 1000,
-                  opacity: 0
-                }}
-                animate={{
-                  y: [null, -200],
-                  opacity: [0, 0.2, 0.4, 0.2, 0],
-                  x: [null, Math.random() * 100 - 50]
-                }}
-                transition={{
-                  duration: Math.random() * 10 + 8,
-                  repeat: Infinity,
-                  delay: Math.random() * 3,
-                  ease: "easeInOut"
-                }}
-              >
-                {singleBinary}
-              </motion.div>
-            )
-          })}
+            ))}
+          </div>
         </div>
 
         <div className="container mx-auto px-6 text-center relative z-10">
