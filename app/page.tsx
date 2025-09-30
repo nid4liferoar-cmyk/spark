@@ -52,7 +52,7 @@ export default function Home() {
               >
                 About
               </motion.a>
-              <Link href="/spark/contact">
+              <Link href="/contact">
                 <motion.span
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -118,7 +118,7 @@ export default function Home() {
             transition={{ duration: 1, delay: 1.8 }}
             className="text-center"
           >
-            <Link href="/spark/contact">
+            <Link href="/contact">
               <motion.button
                 whileHover={{ scale: 1.05, backgroundColor: '#ffffff', color: '#000000' }}
                 whileTap={{ scale: 0.95 }}
