@@ -201,25 +201,25 @@ export default function Home() {
               {
                 title: 'E-commerce Platform',
                 category: 'Web Design',
-                image: '/spark/images/ecommerce.jpg',
+                image: './images/ecommerce.jpg',
                 description: 'Modern shopping experience'
               },
               {
                 title: 'Tech Startup',
                 category: 'Landing Page',
-                image: '/spark/images/tech-startup.jpg',
+                image: './images/tech-startup.jpg',
                 description: 'Clean and professional'
               },
               {
                 title: 'Restaurant Chain',
                 category: 'Web App',
-                image: '/spark/images/restaurant.jpg',
+                image: './images/restaurant.jpg',
                 description: 'Food ordering system'
               },
               {
                 title: 'Fashion Brand',
                 category: 'E-commerce',
-                image: '/spark/images/fashion.jpg',
+                image: './images/fashion.jpg',
                 description: 'Luxury shopping experience'
               }
             ].map((project, i) => (
