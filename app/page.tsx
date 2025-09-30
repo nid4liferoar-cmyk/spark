@@ -2,22 +2,18 @@
 
 import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
-import { Menu, X } from 'lucide-react'
+import { ArrowRight, Menu, X } from 'lucide-react'
 import Link from 'next/link'
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [scrollY, setScrollY] = useState(0)
-  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    setMounted(true)
     const handleScroll = () => setScrollY(window.scrollY)
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
-
-  if (!mounted) return null
 
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden">
@@ -31,7 +27,10 @@ export default function Home() {
       >
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
+            <motion.div 
+              whileHover={{ scale: 1.05 }}
+              className="flex items-center space-x-3"
+            >
               <svg width="48" height="48" viewBox="0 0 32 32">
                 <circle cx="16" cy="16" r="14" fill="black" stroke="white" strokeWidth="3" />
                 <path 
@@ -40,15 +39,29 @@ export default function Home() {
                 />
               </svg>
               <span className="text-3xl font-bold">SPARK</span>
-            </div>
+            </motion.div>
             
             <div className="hidden md:flex items-center space-x-8">
-              <a href="/about" className="text-gray-300 hover:text-white transition-colors">
+              <motion.a
+                href="/about"
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0 }}
+                whileHover={{ y: -2 }}
+                className="text-gray-300 hover:text-white transition-colors"
+              >
                 About
-              </a>
-              <a href="/contact" className="text-gray-300 hover:text-white transition-colors">
+              </motion.a>
+              <motion.a
+                href="/contact"
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 }}
+                whileHover={{ y: -2 }}
+                className="text-gray-300 hover:text-white transition-colors"
+              >
                 Contact
-              </a>
+              </motion.a>
             </div>
 
             <button 
@@ -105,12 +118,36 @@ export default function Home() {
             className="text-center"
           >
             <Link href="/contact">
-              <button className="border border-white px-12 py-6 rounded-full text-xl hover:bg-white hover:text-black transition-all duration-300">
+              <motion.button
+                whileHover={{ scale: 1.05, backgroundColor: '#ffffff', color: '#000000' }}
+                whileTap={{ scale: 0.95 }}
+                className="border border-white px-12 py-6 rounded-full text-xl hover:bg-white hover:text-black transition-all duration-300"
+              >
                 Get Started
-              </button>
+              </motion.button>
             </Link>
           </motion.div>
         </div>
+
+        {/* Scroll Indicator */}
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 2.5 }}
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+        >
+          <motion.div
+            animate={{ y: [0, 10, 0] }}
+            transition={{ duration: 2, repeat: Infinity }}
+            className="w-6 h-10 border-2 border-white rounded-full flex justify-center"
+          >
+            <motion.div
+              animate={{ y: [0, 12, 0] }}
+              transition={{ duration: 2, repeat: Infinity }}
+              className="w-1 h-3 bg-white rounded-full mt-2"
+            />
+          </motion.div>
+        </motion.div>
       </section>
 
       {/* Portfolio Section */}
@@ -134,25 +171,25 @@ export default function Home() {
               {
                 title: 'E-commerce Platform',
                 category: 'Web Design',
-                image: './images/ecommerce.jpg',
+                image: '/spark/images/ecommerce.jpg',
                 description: 'Modern shopping experience'
               },
               {
                 title: 'Tech Startup',
                 category: 'Landing Page',
-                image: './images/tech-startup.jpg',
+                image: '/spark/images/tech-startup.jpg',
                 description: 'Clean and professional'
               },
               {
                 title: 'Restaurant Chain',
                 category: 'Web App',
-                image: './images/restaurant.jpg',
+                image: '/spark/images/restaurant.jpg',
                 description: 'Food ordering system'
               },
               {
                 title: 'Fashion Brand',
                 category: 'E-commerce',
-                image: './images/fashion.jpg',
+                image: '/spark/images/fashion.jpg',
                 description: 'Luxury shopping experience'
               }
             ].map((project, i) => (
@@ -162,6 +199,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: i * 0.1 }}
+                whileHover={{ y: -10, scale: 1.02 }}
                 className="group cursor-pointer"
               >
                 <div className="relative overflow-hidden rounded-lg bg-gray-900">
@@ -212,13 +250,14 @@ export default function Home() {
             </div>
             <div className="flex space-x-8">
               {['Instagram', 'Twitter', 'LinkedIn'].map((social) => (
-                <a
+                <motion.a
                   key={social}
                   href="#"
+                  whileHover={{ y: -2 }}
                   className="text-gray-400 hover:text-white transition-colors"
                 >
                   {social}
-                </a>
+                </motion.a>
               ))}
             </div>
           </div>
