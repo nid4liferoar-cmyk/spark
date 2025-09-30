@@ -10,7 +10,7 @@ export default function Contact() {
       <nav className="fixed top-0 w-full z-50 bg-black/80 backdrop-blur-md">
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
-            <Link href="/" className="flex items-center space-x-3">
+            <Link href="/spark" className="flex items-center space-x-3">
               <svg width="48" height="48" viewBox="0 0 32 32">
                 <circle cx="16" cy="16" r="14" fill="black" stroke="white" strokeWidth="3" />
                 <path 
