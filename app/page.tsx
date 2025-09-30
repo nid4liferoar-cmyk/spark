@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
-import { ArrowRight, Menu, X } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 import Link from 'next/link'
 
 export default function Home() {
@@ -27,10 +27,7 @@ export default function Home() {
       >
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
-            <motion.div 
-              whileHover={{ scale: 1.05 }}
-              className="flex items-center space-x-3"
-            >
+            <div className="flex items-center space-x-3">
               <svg width="48" height="48" viewBox="0 0 32 32">
                 <circle cx="16" cy="16" r="14" fill="black" stroke="white" strokeWidth="3" />
                 <path 
@@ -39,29 +36,15 @@ export default function Home() {
                 />
               </svg>
               <span className="text-3xl font-bold">SPARK</span>
-            </motion.div>
+            </div>
             
             <div className="hidden md:flex items-center space-x-8">
-              <motion.a
-                href="/about"
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0 }}
-                whileHover={{ y: -2 }}
-                className="text-gray-300 hover:text-white transition-colors"
-              >
+              <a href="/about" className="text-gray-300 hover:text-white transition-colors">
                 About
-              </motion.a>
-              <motion.a
-                href="/contact"
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 }}
-                whileHover={{ y: -2 }}
-                className="text-gray-300 hover:text-white transition-colors"
-              >
+              </a>
+              <a href="/contact" className="text-gray-300 hover:text-white transition-colors">
                 Contact
-              </motion.a>
+              </a>
             </div>
 
             <button 
@@ -76,36 +59,6 @@ export default function Home() {
 
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center">
-        {/* Animated Background */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div suppressHydrationWarning>
-            {/* Floating Binary Numbers */}
-            {[...Array(20)].map((_, i) => (
-              <motion.div
-                key={`binary-${i}`}
-                className="absolute text-white text-lg font-mono select-none"
-                initial={{ 
-                  x: 100 + (i * 60),
-                  y: 800,
-                  opacity: 0
-                }}
-                animate={{
-                  y: -100,
-                  opacity: [0, 0.15, 0.3, 0.15, 0]
-                }}
-                transition={{
-                  duration: 15,
-                  repeat: Infinity,
-                  delay: i * 0.5,
-                  ease: "linear"
-                }}
-              >
-                {['0', '1', '00', '11', '01', '10'][i % 6]}
-              </motion.div>
-            ))}
-          </div>
-        </div>
-
         <div className="container mx-auto px-6 text-center relative z-10">
           <motion.h1 
             initial={{ opacity: 0, y: 100 }}
@@ -148,36 +101,12 @@ export default function Home() {
             className="text-center"
           >
             <Link href="/contact">
-              <motion.button
-                whileHover={{ scale: 1.05, backgroundColor: '#ffffff', color: '#000000' }}
-                whileTap={{ scale: 0.95 }}
-                className="border border-white px-12 py-6 rounded-full text-xl hover:bg-white hover:text-black transition-all duration-300"
-              >
+              <button className="border border-white px-12 py-6 rounded-full text-xl hover:bg-white hover:text-black transition-all duration-300">
                 Get Started
-              </motion.button>
+              </button>
             </Link>
           </motion.div>
         </div>
-
-        {/* Scroll Indicator */}
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 2.5 }}
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-        >
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="w-6 h-10 border-2 border-white rounded-full flex justify-center"
-          >
-            <motion.div
-              animate={{ y: [0, 12, 0] }}
-              transition={{ duration: 2, repeat: Infinity }}
-              className="w-1 h-3 bg-white rounded-full mt-2"
-            />
-          </motion.div>
-        </motion.div>
       </section>
 
       {/* Portfolio Section */}
@@ -229,7 +158,6 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: i * 0.1 }}
-                whileHover={{ y: -10, scale: 1.02 }}
                 className="group cursor-pointer"
               >
                 <div className="relative overflow-hidden rounded-lg bg-gray-900">
@@ -264,10 +192,6 @@ export default function Home() {
         </div>
       </section>
 
-
-
-
-
       {/* Footer */}
       <footer className="py-12 border-t border-gray-800">
         <div className="container mx-auto px-6">
@@ -284,14 +208,13 @@ export default function Home() {
             </div>
             <div className="flex space-x-8">
               {['Instagram', 'Twitter', 'LinkedIn'].map((social) => (
-                <motion.a
+                <a
                   key={social}
                   href="#"
-                  whileHover={{ y: -2 }}
                   className="text-gray-400 hover:text-white transition-colors"
                 >
                   {social}
-                </motion.a>
+                </a>
               ))}
             </div>
           </div>
