@@ -36,7 +36,7 @@ export default function Contact() {
           message: formData.message,
           subject: `New Project Inquiry from ${formData.name}`
         },
-        'your_public_key' // EmailJS public key
+        'yVSavML_rayAqruut' // EmailJS public key
       )
       
       setSubmitStatus('Message sent successfully! We\'ll get back to you soon.')
@@ -123,11 +123,11 @@ export default function Contact() {
                   onChange={(e) => setFormData({...formData, projectType: e.target.value})}
                   className="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg focus:border-white focus:outline-none"
                 >
-                  <option>E-commerce Website</option>
-                  <option>Tech Startup</option>
-                  <option>Fashion Brand</option>
-                  <option>Restaurant Chain</option>
-                  <option>Other</option>
+                  <option value="E-commerce Website">E-commerce Website</option>
+                  <option value="Tech Startup">Tech Startup</option>
+                  <option value="Fashion Brand">Fashion Brand</option>
+                  <option value="Restaurant Chain">Restaurant Chain</option>
+                  <option value="Other">Other</option>
                 </select>
               </div>
 
