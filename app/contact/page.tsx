@@ -3,13 +3,50 @@
 import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import emailjs from '@emailjs/browser'
 
 export default function Contact() {
   const [mounted, setMounted] = useState(false)
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    projectType: 'E-commerce Website',
+    message: ''
+  })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState('')
 
   useEffect(() => {
     setMounted(true)
   }, [])
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+    
+    try {
+      await emailjs.send(
+        'service_q4epvfl', // EmailJS service ID
+        'template_zvp7yq4', // EmailJS template ID
+        {
+          to_email: 'ayyapps85@gmail.com',
+          from_name: formData.name,
+          from_email: formData.email,
+          project_type: formData.projectType,
+          message: formData.message,
+          subject: `New Project Inquiry from ${formData.name}`
+        },
+        'your_public_key' // EmailJS public key
+      )
+      
+      setSubmitStatus('Message sent successfully! We\'ll get back to you soon.')
+      setFormData({ name: '', email: '', projectType: 'E-commerce Website', message: '' })
+    } catch (error) {
+      setSubmitStatus('Failed to send message. Please try again.')
+    }
+    
+    setIsSubmitting(false)
+  }
 
   if (!mounted) return null
   return (
@@ -53,33 +90,43 @@ export default function Contact() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="max-w-2xl mx-auto"
           >
-            <form className="space-y-6">
+            <form className="space-y-6" onSubmit={handleSubmit}>
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-sm font-medium mb-2">Name</label>
                   <input 
                     type="text" 
+                    value={formData.name}
+                    onChange={(e) => setFormData({...formData, name: e.target.value})}
                     className="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg focus:border-white focus:outline-none"
                     placeholder="Your name"
+                    required
                   />
                 </div>
                 <div>
                   <label className="block text-sm font-medium mb-2">Email</label>
                   <input 
                     type="email" 
+                    value={formData.email}
+                    onChange={(e) => setFormData({...formData, email: e.target.value})}
                     className="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg focus:border-white focus:outline-none"
                     placeholder="your@email.com"
+                    required
                   />
                 </div>
               </div>
               
               <div>
                 <label className="block text-sm font-medium mb-2">Project Type</label>
-                <select className="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg focus:border-white focus:outline-none">
+                <select 
+                  value={formData.projectType}
+                  onChange={(e) => setFormData({...formData, projectType: e.target.value})}
+                  className="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg focus:border-white focus:outline-none"
+                >
                   <option>E-commerce Website</option>
-                  <option>Landing Page</option>
-                  <option>Web Application</option>
-                  <option>Portfolio Website</option>
+                  <option>Tech Startup</option>
+                  <option>Fashion Brand</option>
+                  <option>Restaurant Chain</option>
                   <option>Other</option>
                 </select>
               </div>
@@ -88,17 +135,25 @@ export default function Contact() {
                 <label className="block text-sm font-medium mb-2">Message</label>
                 <textarea 
                   rows={6}
+                  value={formData.message}
+                  onChange={(e) => setFormData({...formData, message: e.target.value})}
                   className="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg focus:border-white focus:outline-none"
                   placeholder="Tell us about your project..."
+                  required
                 ></textarea>
               </div>
 
               <button 
                 type="submit"
-                className="w-full bg-white text-black py-4 rounded-lg font-semibold hover:bg-gray-200 transition-colors"
+                disabled={isSubmitting}
+                className="w-full bg-white text-black py-4 rounded-lg font-semibold hover:bg-gray-200 transition-colors disabled:opacity-50"
               >
-                Send Message
+                {isSubmitting ? 'Sending...' : 'Send Message'}
               </button>
+              
+              {submitStatus && (
+                <p className="text-center text-green-400 mt-4">{submitStatus}</p>
+              )}
             </form>
           </motion.div>
         </div>

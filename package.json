@@ -10,11 +10,12 @@
     "export": "next build && next export"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
+    "framer-motion": "^10.16.4",
+    "lucide-react": "^0.292.0",
     "next": "^15.0.0",
     "react": "^18",
-    "react-dom": "^18",
-    "framer-motion": "^10.16.4",
-    "lucide-react": "^0.292.0"
+    "react-dom": "^18"
   },
   "devDependencies": {
     "@types/node": "^20",
