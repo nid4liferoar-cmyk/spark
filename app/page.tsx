@@ -43,7 +43,7 @@ export default function Home() {
             
             <div className="hidden md:flex items-center space-x-8">
               <motion.a
-                href="/about"
+                href="#portfolio"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0 }}
@@ -52,16 +52,17 @@ export default function Home() {
               >
                 About
               </motion.a>
-              <motion.a
-                href="/contact"
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 }}
-                whileHover={{ y: -2 }}
-                className="text-gray-300 hover:text-white transition-colors"
-              >
-                Contact
-              </motion.a>
+              <Link href="/contact">
+                <motion.span
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 }}
+                  whileHover={{ y: -2 }}
+                  className="text-gray-300 hover:text-white transition-colors cursor-pointer"
+                >
+                  Contact
+                </motion.span>
+              </Link>
             </div>
 
             <button 
@@ -151,7 +152,7 @@ export default function Home() {
       </section>
 
       {/* Portfolio Section */}
-      <section className="py-32 relative">
+      <section id="portfolio" className="py-32 relative">
         <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 100 }}
