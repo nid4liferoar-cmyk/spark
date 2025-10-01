@@ -10,6 +10,7 @@ export default function Contact() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phone: '',
     projectType: 'E-commerce Website',
     message: ''
   })
@@ -31,18 +32,19 @@ export default function Contact() {
         name: formData.name,
         title: `New Project Inquiry - ${formData.projectType}`,
         email: formData.email,
+        phone: formData.phone,
         message: formData.message
       })
       
       setSubmitStatus('Message sent successfully! We\'ll get back to you soon.')
-      setFormData({ name: '', email: '', projectType: 'E-commerce Website', message: '' })
+      setFormData({ name: '', email: '', phone: '', projectType: 'E-commerce Website', message: '' })
     } catch (error) {
       console.error('EmailJS Error:', error)
       
       // Fallback: Log to console and show success (for testing)
       console.log('Form Data:', formData)
       setSubmitStatus('Message sent successfully! (Demo mode - check console)')
-      setFormData({ name: '', email: '', projectType: 'E-commerce Website', message: '' })
+      setFormData({ name: '', email: '', phone: '', projectType: 'E-commerce Website', message: '' })
     }
     
     setIsSubmitting(false)
@@ -114,6 +116,17 @@ export default function Contact() {
                     required
                   />
                 </div>
+              </div>
+              
+              <div>
+                <label className="block text-sm font-medium mb-2">Phone Number</label>
+                <input 
+                  type="tel" 
+                  value={formData.phone}
+                  onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                  className="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg focus:border-white focus:outline-none"
+                  placeholder="+1 (555) 123-4567"
+                />
               </div>
               
               <div>
