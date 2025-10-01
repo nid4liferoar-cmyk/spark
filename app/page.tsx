@@ -73,6 +73,26 @@ export default function Home() {
             </button>
           </div>
         </div>
+        
+        {/* Mobile Menu */}
+        {isMenuOpen && (
+          <div className="md:hidden bg-black/90 backdrop-blur-md">
+            <div className="container mx-auto px-6 py-4 space-y-4">
+              <a
+                href="#portfolio"
+                onClick={() => setIsMenuOpen(false)}
+                className="block text-gray-300 hover:text-white transition-colors"
+              >
+                About
+              </a>
+              <Link href="/contact" onClick={() => setIsMenuOpen(false)}>
+                <span className="block text-gray-300 hover:text-white transition-colors">
+                  Contact
+                </span>
+              </Link>
+            </div>
+          </div>
+        )}
       </motion.nav>
 
       {/* Hero Section */}
